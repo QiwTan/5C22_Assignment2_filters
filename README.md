@@ -1,8 +1,9 @@
 # Median and Cubic Spline audio filters
 
-这个项目中包含两个audio filters，分别为median filter和cubic spline filter，这两个filters都会过滤音频文件中的clicks并分别利用不同的算法插入新的值，其中
-1. Median Filter会将原本click处的值替换为包含click在内的n个值中的中值，且n = filter_length
-2. Cubic Spline Filter会为每两个值的中间部分用三次方程拟合一段平滑曲线，以此推断click处的值
+This project includes two audio filters, namely the median filter and the cubic spline filter. Both filters are designed to eliminate clicks in audio files and insert new values using different algorithms. Specifically:
+
+1. The Median Filter replaces the value at the click with the median value from a set of 'n' values, which includes the click, where 'n' equals the filter_length.
+2. The Cubic Spline Filter fits a smooth curve using a cubic equation for the segments between every two values, thereby inferring the value at the click.
 
 ## installation
 
