@@ -76,8 +76,8 @@ def calculate_mse(clean, restored):
     # Compute the MSE
     clean_audio, rate = read_wav_file(clean)
     output_audio, _ = read_wav_file(restored)
-    mse = np.mean((clean_audio/2 - output_audio) ** 2) / rate
-    print(f"MSE: {mse}")
+    mse = np.mean((clean_audio/2 - output_audio) ** 2)
+    print(f"\nMSE: {mse}")
     return mse
 
 # Unit tests
@@ -105,7 +105,7 @@ class TestMedianFilterWithNumpy(unittest.TestCase):
 
 def main():
     # Define the file names and paths, please switch to your path
-    file_path = '/Users/tanqiwen/Documents/5C22-python/Assignment2/'
+    file_path = '/Users/tanqiwen/Documents/5C22-python/5C22_Assignment2_filters/'
 
     degraded_file = file_path + 'degraded.wav'
     detection_file = file_path + 'detectionfile.wav'
@@ -119,8 +119,8 @@ def main():
     # Call the median filter function
     restored_audio, rate = median_filter_restore(degraded_file, detection_file, filter_length)
     write_wav_file(median_output_file, restored_audio, rate)
+    calculate_mse(clean_file, median_output_file)
     print("Done")
-    mse = calculate_mse(clean_file, median_output_file)
 
 if __name__ == "__main__":
     # run unittest

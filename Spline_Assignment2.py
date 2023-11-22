@@ -14,7 +14,6 @@ import wave
 import numpy as np
 from scipy.interpolate import CubicSpline
 from playsound import playsound
-import time
 import sys
 
 def read_wav_file(filename):
@@ -65,13 +64,13 @@ def calculate_mse(clean, restored):
     # Compute the MSE
     clean_audio, rate = read_wav_file(clean)
     output_audio, _ = read_wav_file(restored)
-    mse = np.mean((clean_audio/2 - output_audio) ** 2) / rate
+    mse = np.mean((clean_audio/2 - output_audio) ** 2)
     print(f"MSE: {mse}")
     return mse
 
 def main():
     # Define the file names and paths, please change to your path
-    file_path = '/Users/tanqiwen/Documents/5C22-python/Assignment2/'
+    file_path = '/Users/tanqiwen/Documents/5C22-python/5C22_Assignment2_filters/'
     degraded_file = file_path + 'degraded.wav'
     detection_file = file_path + 'detectionfile.wav'
     clean_file = file_path + 'clean.wav'
@@ -81,11 +80,11 @@ def main():
     restored_audio, rate = cubic_spline_restore(degraded_file, detection_file)
     write_wav_file(spline_output_file, restored_audio, rate)
 
-    mse = calculate_mse(clean_file, spline_output_file)
+    calculate_mse(clean_file, spline_output_file)
 
     # Play the original and restored audio files
-    playsound(file_path + 'degraded.wav')
-    playsound(file_path + 'spline_output.wav')
+    # playsound(file_path + 'degraded.wav')
+    # playsound(file_path + 'spline_output.wav')
 
     print('Done')
 
