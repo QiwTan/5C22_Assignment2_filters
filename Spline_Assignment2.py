@@ -83,8 +83,8 @@ def main():
     calculate_mse(clean_file, spline_output_file)
 
     # Play the original and restored audio files
-    # playsound(file_path + 'degraded.wav')
-    # playsound(file_path + 'spline_output.wav')
+    playsound(file_path + 'degraded.wav')
+    playsound(file_path + 'spline_output.wav')
 
     print('Done')
 

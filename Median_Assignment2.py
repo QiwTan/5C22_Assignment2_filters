@@ -12,6 +12,7 @@ PS:
 '''
 
 import wave
+from playsound import playsound
 import numpy as np
 import unittest
 import sys
@@ -76,7 +77,7 @@ def calculate_mse(clean, restored):
     # Compute the MSE
     clean_audio, rate = read_wav_file(clean)
     output_audio, _ = read_wav_file(restored)
-    mse = np.mean((clean_audio/2 - output_audio) ** 2)
+    mse = np.mean((clean_audio/2 - output_audio) ** 2)/32768
     print(f"\nMSE: {mse}")
     return mse
 
@@ -120,6 +121,10 @@ def main():
     restored_audio, rate = median_filter_restore(degraded_file, detection_file, filter_length)
     write_wav_file(median_output_file, restored_audio, rate)
     calculate_mse(clean_file, median_output_file)
+
+    playsound(file_path + 'degraded.wav')
+    playsound(file_path + 'median_output.wav')
+
     print("Done")
 
 if __name__ == "__main__":
