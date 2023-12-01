@@ -137,9 +137,9 @@ calculate_mse(clean_file, spline_output_file)
 ```
 calculate_mse funciton reads the clean audio and restored audio, then subtracts clean from restored, squares the result, and then divides by the length of the audio. Finally, print the mse.
 
-**Results**
+## Results
 
-1. For the median filter, different lengths were explored to test the effectiveness of the restoration. In particular, XXXX were tested and XXX was observed to deliver the lowest MSE, as shown in the figure below.
+1. For the median filter, different lengths were explored to test the effectiveness of the restoration. In particular, MSE were tested and filter_length=3 was observed to deliver the lowest MSE, as shown in the figure below.
 
 <img src="filter_length_plot.png" width="350">
 
