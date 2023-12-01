@@ -39,10 +39,10 @@ python Spline_Assignment2.py
 ```
 ---
 
-## Methodology and Results for Median Filter
+# Methodology and Results for Median Filter
 Describe here how you have designed your code, e.g. a main script/routine that calls different functions, is the unittesting included in the main routine? 
 The main function calls a series of functions wirtten in the script
-# 1. Different inputs are defined
+## 1. Different inputs are defined
 ```python
 file_path = '/Users/tanqiwen/Documents/5C22-python/5C22_Assignment2_filters/'
 
@@ -53,31 +53,31 @@ median_output_file = file_path + 'median_output.wav'
 ```
 To run the script, please change file_path to your own file path
 
-# 2. Filter Length is set
+## 2. Filter Length is set
 ```python
 filter_length = 3
 ```
 You are free to change the filter_length to any positive odd value
 
-# 3. Degraded audio is recalculated by median filter
+## 3. Degraded audio is recalculated by median filter
 ```python
 restored_audio, rate = median_filter_restore(degraded_file, detection_file, filter_length)
 ```
 The core function of this script is 'median_filter_restored', which reads the degraded audio and detection, recalculates the positions indicated by the detection using a median filter. The principle is to reorder a number of points centered on the click by size and select the median value to replace the number at the click position, where n equals the filter_length. Additionally, during the operation of this function, the progress is indicated by X%, but because the calculation is usually very fast, only 100% is typically visible.
 
-# 4. Restored audio is written in a new wav file
+## 4. Restored audio is written in a new wav file
 ```python
 write_wav_file(median_output_file, restored_audio, rate)
 ```
 write_wav_file funciton reads the restored_audio calculated by median filter and write it to an output file which we defined in step 1.
 
-# 5. MSE is calculated
+## 5. MSE is calculated
 ```python
 calculate_mse(clean_file, median_output_file)
 ```
 calculate_mse funciton reads the clean audio and restored audio, then subtracts clean from restored, squares the result, and then divides by the length of the audio. Finally, print the mse.
 
-# 6. Unittets
+## 6. Unittets
 ```python
 class TestMedianFilterWithNumpy(unittest.TestCase):
     def test_median_filter(self):
@@ -105,10 +105,10 @@ Here, the unittest verifies:
 1. Whether the computed array is consistent with the array calculated using numpy.median.
 2. Whether it can correctly raise an error when the filter length is an even number.
 
-## Methodology and Results for Cubic Spline Filter
+# Methodology and Results for Cubic Spline Filter
 The main function calls a series of functions wirtten in the script
 
-# 1. Different inputs are defined
+## 1. Different inputs are defined
 ```python
 file_path = '/Users/tanqiwen/Documents/5C22-python/5C22_Assignment2_filters/'
 
@@ -119,25 +119,25 @@ median_output_file = file_path + 'median_output.wav'
 ```
 To run the script, please change file_path to your own file path
 
-# 2. Degraded audio is recalculated by median filter
+## 2. Degraded audio is recalculated by median filter
 ```python
 restored_audio, rate = cubic_spline_restore(degraded_file, detection_file)
 ```
 The core function of this script is 'cubic_spline_restored', which reads the degraded audio and detection, recalculates the positions indicated by the detection using a cubic spline filter. The principle is to use a cubic equation to fit the curve between every two points, ensuring that the overall curve is differentiable everywhere. It calculates the four parameters of the cubic curve and uses the new points obtained from the curve fitting to replace the original points at the location of the click. Additionally, during the operation of this function, the progress is indicated by X%, but because the calculation is usually very fast, only 100% is typically visible.
 
-# 3. Restored audio is written in a new wav file
+## 3. Restored audio is written in a new wav file
 ```python
 write_wav_file(spline_output_file, restored_audio, rate)
 ```
 write_wav_file funciton reads the restored_audio calculated by cubic spline filter and write it to an output file which we defined in step 1.
 
-# 4. MSE is calculated
+## 4. MSE is calculated
 ```python
 calculate_mse(clean_file, spline_output_file)
 ```
 calculate_mse funciton reads the clean audio and restored audio, then subtracts clean from restored, squares the result, and then divides by the length of the audio. Finally, print the mse.
 
-## Results
+# Results
 
 1. For the median filter, different lengths were explored to test the effectiveness of the restoration. In particular, MSE were tested and filter_length=3 was observed to deliver the lowest MSE, as shown in the figure below.
 
@@ -159,7 +159,7 @@ After listening to the two restored files, we notice that both filters can compl
 
 
 ---
-## Credits
+# Credits
 
 This code was developed for purely academic purposes by Qiwen Tan as part of the module 5C22 Computational Methods
 
